@@ -1,0 +1,23 @@
+{
+    "language" : "Language",
+    "text_one" : "Your voice",
+    "text_two" : "Convert whatever you want",
+    "text_three" : "👋 Hey there",
+    "text_four": "Welcome back!",
+    "text_five" : "Make Your Life Easier",
+    "text_six" : "By Saving Your Time",
+    "hint_one" : "Enter the text",
+    "tts" : "Text to Speech",
+    "stt" : "Speech to Text" ,
+    "hint_two" : "Press the mic and start speaking",
+    "setting" : "Setting",
+    "translate" : "Translate",
+    "about" : "Contact Us",
+    "amharic": "Amharic",
+    "english": "English",
+    "theme": "Theme",
+    "light_theme":"Light Theme",
+    "dark_theme" :"Dark Theme",
+    "exit" : "Exit App",
+    "tagLine" : "Text to speech & Speech to text"
+}

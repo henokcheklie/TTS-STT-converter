@@ -1,0 +1,174 @@
+@startuml
+set namespaceSeparator ::
+
+class "zconverter::about.dart::About" {
+  +State<About> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::about.dart::About"
+
+class "zconverter::about.dart::_AboutState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::about.dart::_AboutState"
+
+class "zconverter::ForTheme::ThemeSetUp.dart::MyThemePreferance" {
+  {static} +String THEME_KEY
+  +dynamic setTheme()
+  +dynamic getTheme()
+}
+
+class "zconverter::ForTheme::ThemeSetUp.dart::ModelTheme" {
+  -bool _isDark
+  -MyThemePreferance _preferance
+  +bool isDark
+  +dynamic getPreference()
+}
+
+"zconverter::ForTheme::ThemeSetUp.dart::ModelTheme" o-- "zconverter::ForTheme::ThemeSetUp.dart::MyThemePreferance"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "zconverter::ForTheme::ThemeSetUp.dart::ModelTheme"  
+
+class "zconverter::HomePage.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::HomePage.dart::HomePage"
+
+class "zconverter::HomePage.dart::_HomePage" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::HomePage.dart::_HomePage"
+
+class "zconverter::HomePage.dart::PageClipper" {
+  +Path getClip()
+  +bool shouldReclip()
+}
+
+"flutter::src::rendering::proxy_box.dart::CustomClipper" <|-- "zconverter::HomePage.dart::PageClipper"
+
+class "zconverter::LanguageList.dart::Language" {
+  +int id
+  +String name
+  +String languageCode
+  +int hasCode
+  +bool ==()
+  {static} +List<Language> setLanguage()
+}
+
+class "zconverter::main.dart::MyApp" {
+  +State<MyApp> createState()
+  {static} +void setLocale()
+  +_MyAppState creatState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::main.dart::MyApp"
+
+class "zconverter::main.dart::_MyAppState" {
+  -Locale _locale
+  +void initState()
+  -Future<Locale> _fetchLocale()
+  +Widget build()
+}
+
+"zconverter::main.dart::_MyAppState" o-- "dart::ui::Locale"
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::main.dart::_MyAppState"
+
+class "zconverter::main.dart::WrapperPage" {
+  +State<WrapperPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::main.dart::WrapperPage"
+
+class "zconverter::main.dart::_WrapperPageState" {
+  -PageController _pageController
+  -int _selectedIndex
+  -List<Widget> _PageLists
+  +Widget build()
+  +void initState()
+  +void dispose()
+}
+
+"zconverter::main.dart::_WrapperPageState" o-- "flutter::src::widgets::page_view.dart::PageController"
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::main.dart::_WrapperPageState"
+
+class "zconverter::setting.dart::Setting" {
+  +State<Setting> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::setting.dart::Setting"
+
+class "zconverter::setting.dart::_SettingState" {
+  -String _selectedItem
+  -List<String> _themeList
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::setting.dart::_SettingState"
+
+class "zconverter::STT.dart::STT" {
+  +State<STT> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::STT.dart::STT"
+
+class "zconverter::STT.dart::_STTState" {
+  +TextEditingController textController1
+  -SpeechToText _speechToText
+  +String changedId
+  -bool _isListening
+  +Widget build()
+  -void _changeLanguage()
+  +void dispose()
+  +void initState()
+  -void _Listen()
+  -void _stopListening()
+}
+
+"zconverter::STT.dart::_STTState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"zconverter::STT.dart::_STTState" o-- "speech_to_text::speech_to_text.dart::SpeechToText"
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::STT.dart::_STTState"
+
+class "zconverter::TTS.dart::TTS" {
+  +State<TTS> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "zconverter::TTS.dart::TTS"
+
+class "zconverter::TTS.dart::_TTSState" {
+  -List<dynamic> _setLanguage
+  -FlutterTts _flutterTts
+  -String? _tts
+  +TextEditingController textController
+  -TtsState _ttsState
+  +IconData TtsButton
+  +Widget build()
+  +void initState()
+  +dynamic initTts()
+  +dynamic Speak()
+  +dynamic Pause()
+  +dynamic Resume()
+  +void Stop()
+}
+
+"zconverter::TTS.dart::_TTSState" o-- "flutter_tts::flutter_tts.dart::FlutterTts"
+"zconverter::TTS.dart::_TTSState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"zconverter::TTS.dart::_TTSState" o-- "zconverter::TTS.dart::TtsState"
+"zconverter::TTS.dart::_TTSState" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::State" <|-- "zconverter::TTS.dart::_TTSState"
+
+class "zconverter::TTS.dart::TtsState" {
+  +int index
+  {static} +List<TtsState> values
+  {static} +TtsState playing
+  {static} +TtsState stoped
+  {static} +TtsState paused
+  {static} +TtsState resumed
+}
+
+"zconverter::TTS.dart::TtsState" o-- "zconverter::TTS.dart::TtsState"
+"dart::core::Enum" <|-- "zconverter::TTS.dart::TtsState"
+
+
+@enduml
